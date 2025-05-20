@@ -3,7 +3,7 @@ from sklearn.preprocessing import OrdinalEncoder
 
 def download_data():
     #mydata
-    df = pd.read_csv('/var/lib/jenkins/workspace/download/mlops/lab3',  delimeter=',')
+    df = pd.read_csv('/var/lib/jenkins/workspace/download/mlops/lab3',  delimiter=',')
     df.to_csv("cost.csv", index = False)
     return df
 
