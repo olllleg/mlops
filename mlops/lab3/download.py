@@ -48,4 +48,4 @@ def clear_data(path2df):
     return True
 
 download_data()
-clear_data("cost_csv.csv")
+clear_data("cost.csv")
