@@ -14,7 +14,7 @@ import joblib
 
 def scale_frame(frame):
     df = frame.copy()
-    X,y = df.drop(columns = ['Price(euro)']), df['Price(euro)']
+    X,y = df.drop(columns = ['Tuition_USD']), df['Tuition_USD']
     scaler = StandardScaler()
     power_trans = PowerTransformer()
     X_scale = scaler.fit_transform(X.values)
@@ -43,7 +43,7 @@ if __name__ == "__main__":
             "fit_intercept": [False, True],
             }
     
-    mlflow.set_experiment("linear model cars")
+    mlflow.set_experiment("Uni_tuition")
     with mlflow.start_run():
         lr = SGDRegressor(random_state=42)
         clf = GridSearchCV(lr, params, cv = 3, n_jobs = 4)
@@ -71,7 +71,7 @@ if __name__ == "__main__":
         predictions = best.predict(X_train)
         signature = infer_signature(X_train, predictions)
         mlflow.sklearn.log_model(best, "model", signature=signature)
-        with open("lr_cars.pkl", "wb") as file:
+        with open("lr_cost.pkl", "wb") as file:
             joblib.dump(lr, file)
 
     dfruns = mlflow.search_runs()
